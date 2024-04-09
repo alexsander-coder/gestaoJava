@@ -1,7 +1,14 @@
 package com.project.gestao.exceptions;
 
 public class UserFoundException extends RuntimeException {
-  public UserFoundException() {
-    super("Usuário já existe");
+  private String field;
+
+  public UserFoundException(String field) {
+    super("O seguinte campo: " + field + " já está em uso!");
+    this.field = field;
+  }
+
+  public String getField() {
+    return field;
   }
 }

@@ -1,8 +1,10 @@
-package com.project.gestao.modules.candidate;
+package com.project.gestao.modules.candidate.repositories;
 
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.project.gestao.modules.candidate.entities.CandidateEntity;
 
 public interface CandidateRepository extends JpaRepository<CandidateEntity, UUID> {
   Optional<CandidateEntity> findByUsernameOrEmail(String username, String email);

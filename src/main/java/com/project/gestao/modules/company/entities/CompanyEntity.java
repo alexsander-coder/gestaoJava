@@ -1,29 +1,29 @@
-package com.project.gestao.modules.candidate;
+package com.project.gestao.modules.company.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+// import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-//ao passar o Data, do lombok os getters e setters são criados por "baixo dos panos" com essa dependency. control p dependency 
+@Entity(name = "company")
 @Data
-@Entity(name = "candidate")
-public class CandidateEntity {
+public class CompanyEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.UUID)
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   private UUID id;
-  private String name;
 
   @NotBlank()
   @Pattern(regexp = "\\S+", message = "O campo não pode conter espaços")
@@ -34,9 +34,13 @@ public class CandidateEntity {
 
   @Length(min = 10, max = 20, message = "O password deve conter entre 10 e 20 caracteres")
   private String password;
+
+  private String cnpj;
+  private String name;
+  private String website;
   private String description;
-  private String curriculum;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
+
 }
