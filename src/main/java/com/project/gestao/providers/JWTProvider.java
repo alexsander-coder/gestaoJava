@@ -10,12 +10,12 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 @Service
 public class JWTProvider {
 
-  @Value("{$SECURITY.TOKE.SECRET}")
+  @Value("${SECURITY.TOKEN.SECRET}")
   private String secretKey;
 
   public String validateToken(String token) {
 
-    token = token.replace("Bearer ", "token");
+    token = token.replace("Bearer ", "");
 
     Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
@@ -26,6 +26,7 @@ public class JWTProvider {
           .getSubject();
       return subject;
     } catch (JWTVerificationException ex) {
+      System.err.println("Falha na verificação do JWT: " + ex.getMessage());
       ex.printStackTrace();
       return "";
     }

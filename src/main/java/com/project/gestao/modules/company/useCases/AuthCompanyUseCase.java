@@ -19,7 +19,7 @@ import com.project.gestao.modules.company.repositories.CompanyRepository;
 @Service
 public class AuthCompanyUseCase {
 
-  @Value("{$SECURITY.TOKE.SECRET}")
+  @Value("${SECURITY.TOKEN.SECRET}")
   private String secretKey;
 
   @Autowired
@@ -42,7 +42,8 @@ public class AuthCompanyUseCase {
     }
 
     Algorithm algorithm = Algorithm.HMAC256(secretKey);
-    var token = JWT.create().withIssuer("javagas")
+    var token = JWT.create()
+        .withIssuer("javagas")
         .withExpiresAt(Instant.now().plus(5, ChronoUnit.HOURS))
         .withSubject(company.getId().toString())
         .sign(algorithm);
