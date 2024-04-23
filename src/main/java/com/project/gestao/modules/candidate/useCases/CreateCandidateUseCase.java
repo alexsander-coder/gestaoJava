@@ -18,7 +18,8 @@ public class CreateCandidateUseCase {
   public CandidateEntity execute(CandidateEntity candidateEntity) {
     // Verificar se já existe um candidato com o mesmo username ou email
     Optional<CandidateEntity> existingCandidate = candidateRepository
-        .findByUsernameOrEmail(candidateEntity.getUsername(), candidateEntity.getEmail());
+        .findByUsernameOrEmail(
+            candidateEntity.getUsername(), candidateEntity.getEmail());
 
     // Se já existe um candidato com o mesmo username ou email
     if (existingCandidate.isPresent()) {

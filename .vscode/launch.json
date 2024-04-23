@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-GestaoApplication<gestao>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.project.gestao.GestaoApplication",
+      "projectName": "gestao",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
